@@ -16,21 +16,7 @@ const char* password = "betina1802";
 
 ESP8266WebServer server(5555);
 
-StaticJsonBuffer<300> jsonBuffer;
-JsonObject& object = jsonBuffer.createObject();
-JsonObject& data = object.createNestedObject("data");
-   
-JsonObject& accel = data.createNestedObject("accel");
-JsonObject& temp = data.createNestedObject("temp");
-JsonObject& gyro = data.createNestedObject("gyro");
-   
-JsonObject& accelX = accel.createNestedObject("accelX");
-JsonObject& accelY = accel.createNestedObject("accelY");
-JsonObject& accelZ = accel.createNestedObject("accelZ");
- 
-JsonObject& gyroX = gyro.createNestedObject("gyroX");
-JsonObject& gyroY = gyro.createNestedObject("gyroY");
-JsonObject& gyroZ = gyro.createNestedObject("gyroZ");
+
 
 const int led = 2;
 
