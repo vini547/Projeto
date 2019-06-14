@@ -16,8 +16,6 @@ const char* password = "betina1802";
 
 ESP8266WebServer server(5555);
 
-
-
 const int led = 2;
 
 
