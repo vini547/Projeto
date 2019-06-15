@@ -1,2 +1,5 @@
-rm -r --cached .vscode
+
 .vscode/
+arduinoskecthrodando/*
+190615-162752-esp32dev/*
+!serverupesp32.ino/.gitkeep
