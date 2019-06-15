@@ -14,7 +14,7 @@ float rotX, rotY, rotZ;
 const char* ssid = "BetinaFernanda";
 const char* password = "betina1802";
 
-ESP8266WebServer server(5555);
+WebServer server(5555);
 
 String createJsonResponse() {
   
@@ -88,11 +88,11 @@ void recordGyroRegisters() {
   gyroX = Wire.read()<<8|Wire.read(); //Store first two bytes into accelX
   gyroY = Wire.read()<<8|Wire.read(); //Store middle two bytes into accelY
   gyroZ = Wire.read()<<8|Wire.read(); //Store last two bytes into accelZ
-  /*processGyroData();*/
+  
 }
 
 void handleRoot() {
-  digitalWrite(led, 1);
+ 
 
   String textoHTML;
 
@@ -101,10 +101,10 @@ void handleRoot() {
   textoHTML +=  "<html><body><p><a href=https://youtu.be/5y19QMU2GS0>LINKAO</a></p>"; 
   textoHTML +=  "<html><body><p><a href=http://127.0.0.1:5500/nodejs-server/public/index.html>LINKAO</a></p>";
   
+  
    
   server.send(200, "text/html", textoHTML);
-  digitalWrite(led, 0);
-}
+ }
 
 void handleNotFound(){
   digitalWrite(led, 1);
