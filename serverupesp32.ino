@@ -139,6 +139,7 @@ server.streamFile(jedi, "image/jpeg");
   setupMPU();
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
+  
   Serial.println("");
  
 
