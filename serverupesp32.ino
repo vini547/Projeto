@@ -7,6 +7,7 @@
 #include <SPIFFS.h>
 #include <FS.h>
 
+
 long accelX, accelY, accelZ;
 float gForceX, gForceY, gForceZ;
 
@@ -67,7 +68,7 @@ void handleRoot() {
   textoHTML += "<html><head><style>table, th, td {border: 1px solid black;}</style></head><body><table><tr><th>Modulo</th><th>Eixo X</th>  <th>Eixo Y</th>  <th>Eixo Z</th>   </tr>    <td>Acelerometro</td>    <td><script></script></td>    <td>accelY</td>    <td>accelZ</td>  </tr>  <tr>    <td>Giroscopio</td>    <td>gyroX</td>    <td>gyroY</td>    <td>gyroZ</td></tr></table></body></html>";
   textoHTML += "<html><body><p><a href=https://youtu.be/5y19QMU2GS0>LINK</a></p>";  
   textoHTML +=  createJsonResponse();  
-  textoHTML += "<html><body><p><a href=http://www.portalburn.com.br/downloads/operacao_prato/fotos/>alien</a></p>";  
+  textoHTML += "<html><body><p><a href=http://www.portalburn.com.br/downloads/operacao_prato/fotos/>Alien</a></p>";  
   textoHTML += "<html><body><p>This example shows image loading from ESP8266 Web server, Image and HTML web page files are uploaded in ESP Flash using SPIFFS tool:</p><img src='jedi.jpg' alt='Image from ESP8266' width='200' height='200'> </body></html>";
   
    
