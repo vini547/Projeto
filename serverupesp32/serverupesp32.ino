@@ -5,7 +5,9 @@
 #include <Wire.h>
 #include <ArduinoJson.h>
 #include <SPIFFS.h>
+#include <FS.h>
 
+int LED_BUILTIN = 2;
 long accelX, accelY, accelZ;
 float gForceX, gForceY, gForceZ;
 
@@ -42,7 +44,7 @@ void recordAccelRegisters() {
   accelX = Wire.read()<<8|Wire.read(); //Store first two bytes into accelX
   accelY = Wire.read()<<8|Wire.read(); //Store middle two bytes into accelY
   accelZ = Wire.read()<<8|Wire.read(); //Store last two bytes into accelZ
- /* processAccelData();*/
+ 
 }
 
 void recordGyroRegisters() {
@@ -62,14 +64,22 @@ void handleRoot() {
 
   String textoHTML;
 
-  textoHTML = "<center>RAW DATA FROM MPU6050 REGISTERS</center>";
+  textoHTML =  "<center>RAW DATA FROM MPU6050 REGISTERS</center>";
   textoHTML += "<html><head><style>table, th, td {border: 1px solid black;}</style></head><body><table><tr><th>Modulo</th><th>Eixo X</th>  <th>Eixo Y</th>  <th>Eixo Z</th>   </tr>    <td>Acelerometro</td>    <td><script></script></td>    <td>accelY</td>    <td>accelZ</td>  </tr>  <tr>    <td>Giroscopio</td>    <td>gyroX</td>    <td>gyroY</td>    <td>gyroZ</td></tr></table></body></html>";
-  textoHTML +=  "<html><body><p><a href=https://youtu.be/5y19QMU2GS0>LINKAO</a></p>";  
-  textoHTML += createJsonResponse();  
+  textoHTML += "<html><body><p><a href=https://youtu.be/5y19QMU2GS0>Maratona DEV</a></p>";  
+  textoHTML += "<html><body><p><a href=http://www.portalburn.com.br/downloads/operacao_prato/fotos/>Aliens no Brasil?</a></p>";
+  textoHTML += "<html><body><p><a href=https://youtu.be/PRgoisHRmUE>The Nimitz Encounters</a></p>";
+  textoHTML += "<html><body><p><a href=https://github.com/vini547>Github</a></p>";
+  textoHTML +=  createJsonResponse();  
+    
+  
   
    
   server.send(200, "text/html", textoHTML);
- }
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(300);
+  digitalWrite(LED_BUILTIN, LOW);
+  }
 
 void handleNotFound(){
  
@@ -122,12 +132,21 @@ String createJsonResponse() {
 }
 void setup(void){
   
-  
+  pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(9600);
+  if(!SPIFFS.begin()){
+    Serial.println("An Error has occurred while mounting SPIFFS");
+    return;
+}
+
+File jedi = SPIFFS.open("/jedi.jpg", "r");
+server.streamFile(jedi, "image/jpeg");
+
   Wire.begin();
   setupMPU();
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
+  
   Serial.println("");
  
 
@@ -167,6 +186,5 @@ void loop(void){
   recordAccelRegisters();
   recordGyroRegisters();
   Serial.println(createJsonResponse());
-  
   delay(100);
 }
