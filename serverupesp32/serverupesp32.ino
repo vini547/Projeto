@@ -6,6 +6,7 @@
 #include <ArduinoJson.h>
 #include <SPIFFS.h>
 #include <FS.h>
+#include <HTTPClient.h>
 
 int LED_BUILTIN = 2;
 long accelX, accelY, accelZ;
@@ -182,6 +183,10 @@ server.streamFile(jedi, "image/jpeg");
 }
 
 void loop(void){
+  HTTPClient http;
+  http.begin("s3.private.ap.cloud-object-storage.appdomain.cloud");
+
+
   server.handleClient();
   recordAccelRegisters();
   recordGyroRegisters();
