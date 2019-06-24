@@ -75,7 +75,7 @@ void readFrom(byte address, int num, byte _buff[])
 }
 
 void setup() {
-    Wire.begin(0,2);      
+    Wire.begin();      
   
   // Put the ADXL345 into +/- 2G range by writing the value 0x01 to the DATA_FORMAT register.
   // FYI: 0x00 = 2G, 0x01 = 4G, 0x02 = 8G, 0x03 = 16G
