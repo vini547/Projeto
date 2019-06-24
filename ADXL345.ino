@@ -47,7 +47,7 @@ void setup(){
 }
 void loop(){
 
-recordAccelRegisters();
+readADXL345();
 delay(100);
 Serial.println(x);
 digitalWrite(BUILTIN_LED1, HIGH);
