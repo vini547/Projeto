@@ -1,5 +1,6 @@
 #include <Wire.h>
-long x, y, z;
+int x, y, z;
+const short int BUILTIN_LED1 = 1;
 
 
 void setupADXL345(){
@@ -15,6 +16,9 @@ void setupADXL345(){
   Wire.write(0x2D);
   Wire.write(8);
   Wire.endTransmission();
+  digitalWrite(BUILTIN_LED1, HIGH);
+  delay(500);
+  digitalWrite(BUILTIN_LED1, LOW);  
 }
 
 void readADXL345() {    
@@ -26,12 +30,19 @@ void readADXL345() {
   x = Wire.read()<<8|Wire.read(); 
   y = Wire.read()<<8|Wire.read(); 
   z = Wire.read()<<8|Wire.read(); 
+  digitalWrite(BUILTIN_LED1, HIGH);
+  delay(500);
+  digitalWrite(BUILTIN_LED1, LOW);  
 }
 
 void setup(){
+  pinMode(BUILTIN_LED1, OUTPUT); 
     Serial.begin(115200);
     Wire.begin();
     setupADXL345();
+    digitalWrite(BUILTIN_LED1, HIGH);
+    delay(500);
+    digitalWrite(BUILTIN_LED1, LOW);  
 
 }
 void loop(){
@@ -39,5 +50,12 @@ void loop(){
 recordAccelRegisters();
 delay(100);
 Serial.println(x);
+digitalWrite(BUILTIN_LED1, HIGH);
+  delay(300);
+  digitalWrite(BUILTIN_LED1, LOW);  digitalWrite(BUILTIN_LED1, HIGH);
+  delay(300);
+  digitalWrite(BUILTIN_LED1, LOW);  digitalWrite(BUILTIN_LED1, HIGH);
+  delay(300);
+  digitalWrite(BUILTIN_LED1, LOW);  
 
 }
