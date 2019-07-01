@@ -1,6 +1,6 @@
 #include <Wire.h>
 int x, y, z;
-const short int BUILTIN_LED1 = 1;
+
 
 
 void setupADXL345(){
@@ -35,7 +35,7 @@ void readADXL345() {
   digitalWrite(BUILTIN_LED1, LOW);  
 }
 
-void setup(){
+void setup(void){
   pinMode(BUILTIN_LED1, OUTPUT); 
     Serial.begin(115200);
     Wire.begin();
@@ -45,7 +45,7 @@ void setup(){
     digitalWrite(BUILTIN_LED1, LOW);  
 
 }
-void loop(){
+void loop(void){
 
 readADXL345();
 delay(100);
